@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEAJ アロマテラピーインストラクターアロマセラピスト共通学科試験対策本</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AEAJ アロマテラピーインストラクター<br>アロマセラピスト共通学科試験対策本</h1>
+            <p class="subtitle">皮膚の知識を、わかりやすく学ぼう！</p>
+        </header>
+
+        <!-- ユーザー登録画面 -->
+        <div id="user-screen" class="screen active">
+            <div class="user-content">
+                <h2>ユーザー名を入力してください</h2>
+                <div class="user-input">
+                    <input type="text" id="username-input" placeholder="ユーザー名を入力" maxlength="20">
+                    <button class="btn btn-primary" onclick="registerUser()">登録</button>
+                </div>
+                <div id="user-list" class="user-list"></div>
+            </div>
+        </div>
+
+        <!-- 問題タイプ選択画面 -->
+        <div id="type-selection-screen" class="screen">
+            <div class="type-selection-content">
+                <h2>問題タイプを選んでください</h2>
+                <p class="current-user">現在のユーザー: <span id="current-username"></span></p>
+                <div class="type-buttons">
+                    <button class="btn btn-primary btn-large" onclick="selectQuestionType('truefalse')">一問一答</button>
+                    <button class="btn btn-primary btn-large" onclick="selectQuestionType('multiple')">四択問題</button>
+                </div>
+                <button class="btn btn-secondary" onclick="showUserScreen()">ユーザーを変更</button>
+            </div>
+        </div>
+
+        <!-- スタート画面 -->
+        <div id="start-screen" class="screen">
+            <div class="start-content">
+                <p class="current-user">現在のユーザー: <span id="start-username"></span></p>
+                <h2>問題集の使い方</h2>
+                <ul class="instructions">
+                    <li>📚 一問一答形式または四択問題で、知識を深めよう</li>
+                    <li>💡 解説を読んで、本質を理解しよう</li>
+                    <li>🎯 噛み砕いた説明もついてるよ</li>
+                    <li>📊 正解率を確認して、復習しよう</li>
+                </ul>
+                <div class="mode-selection">
+                    <h3>問題を選んでください</h3>
+                    <div class="filter-selection">
+                        <label>
+                            <input type="radio" name="filter" value="all" checked>
+                            全問題回答
+                        </label>
+                        <label>
+                            <input type="radio" name="filter" value="wrong">
+                            間違った問題のみ回答
+                        </label>
+                    </div>
+                    <div class="mode-buttons">
+                        <button class="btn btn-primary" onclick="startQuiz('all')">全問チャレンジ</button>
+                        <button class="btn btn-primary" onclick="startQuiz('10')">10問チャレンジ</button>
+                        <button class="btn btn-primary" onclick="startQuiz('5')">5問チャレンジ</button>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="showTypeSelection()">問題タイプを変更</button>
+            </div>
+        </div>
+
+        <!-- クイズ画面 -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-bar">
+                    <div id="progress" class="progress-fill"></div>
+                </div>
+                <div class="quiz-info">
+                    <span id="question-number">問題 1 / 10</span>
+                    <span id="category-badge" class="category-badge">皮膚</span>
+                    <span id="question-status" class="question-status"></span>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <h2 id="question-text" class="question-text"></h2>
+                
+                <div id="options-container" class="options-container">
+                    <!-- 選択肢はJavaScriptで動的に生成 -->
+                </div>
+
+                <div id="answer-feedback" class="answer-feedback hidden">
+                    <div id="feedback-content"></div>
+                    <button class="btn btn-next" onclick="nextQuestion()">次の問題</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 結果画面 -->
+        <div id="result-screen" class="screen">
+            <div class="result-content">
+                <h2>🎉 おつかれさまでした！</h2>
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span id="score-percentage">0%</span>
+                    </div>
+                    <p class="score-text">
+                        正解数: <span id="correct-count">0</span> / <span id="total-count">0</span>
+                    </p>
+                </div>
+                <div class="result-details">
+                    <h3>結果の詳細</h3>
+                    <div id="result-breakdown"></div>
+                </div>
+                <div class="result-actions">
+                    <button class="btn btn-primary" onclick="restartQuiz()">もう一度挑戦</button>
+                    <button class="btn btn-secondary" onclick="showStartScreen()">最初に戻る</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

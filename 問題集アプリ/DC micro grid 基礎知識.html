@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCマイクログリッド学習問題集</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔋 DCマイクログリッド学習問題集</h1>
+            <p class="subtitle">電験三種の知識を、わかりやすく学ぼう！</p>
+        </header>
+
+        <div id="start-screen" class="screen active">
+            <div class="start-content">
+                <h2>問題集の使い方</h2>
+                <ul class="instructions">
+                    <li>📚 四択問題に答えて、知識を深めよう</li>
+                    <li>💡 解説を読んで、本質を理解しよう</li>
+                    <li>🎯 小学生でもわかる説明もついてるよ</li>
+                    <li>📊 正解率を確認して、復習しよう</li>
+                </ul>
+                <div class="mode-selection">
+                    <h3>モードを選んでください</h3>
+                    <button class="btn btn-primary" onclick="startQuiz('all')">全問チャレンジ（20問）</button>
+                    <button class="btn btn-primary" onclick="startQuiz('10')">10問チャレンジ</button>
+                    <button class="btn btn-primary" onclick="startQuiz('5')">5問チャレンジ</button>
+                    <button class="btn btn-secondary" onclick="showCategorySelection()">カテゴリー別</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="category-screen" class="screen">
+            <div class="category-content">
+                <h2>カテゴリーを選んでください</h2>
+                <div class="category-buttons">
+                    <button class="btn btn-category" onclick="startQuizByCategory('基礎知識')">基礎知識</button>
+                    <button class="btn btn-category" onclick="startQuizByCategory('電力の基礎')">電力の基礎</button>
+                    <button class="btn btn-category" onclick="startQuizByCategory('機械の基礎')">機械の基礎</button>
+                    <button class="btn btn-category" onclick="startQuizByCategory('蓄電池')">蓄電池</button>
+                    <button class="btn btn-category" onclick="startQuizByCategory('効率')">効率</button>
+                    <button class="btn btn-category" onclick="startQuizByCategory('保護')">保護</button>
+                    <button class="btn btn-category" onclick="startQuizByCategory('接地')">接地</button>
+                    <button class="btn btn-category" onclick="startQuizByCategory('実践')">実践</button>
+                </div>
+                <button class="btn btn-back" onclick="showStartScreen()">戻る</button>
+            </div>
+        </div>
+
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-bar">
+                    <div id="progress" class="progress-fill"></div>
+                </div>
+                <div class="quiz-info">
+                    <span id="question-number">問題 1 / 20</span>
+                    <span id="category-badge" class="category-badge">基礎知識</span>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <h2 id="question-text" class="question-text"></h2>
+                
+                <div id="options-container" class="options-container">
+                    <!-- 選択肢はJavaScriptで動的に生成 -->
+                </div>
+
+                <div id="answer-feedback" class="answer-feedback hidden">
+                    <div id="feedback-content"></div>
+                    <button class="btn btn-next" onclick="nextQuestion()">次の問題</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="result-screen" class="screen">
+            <div class="result-content">
+                <h2>🎉 おつかれさまでした！</h2>
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span id="score-percentage">0%</span>
+                    </div>
+                    <p class="score-text">
+                        正解数: <span id="correct-count">0</span> / <span id="total-count">0</span>
+                    </p>
+                </div>
+                <div class="result-details">
+                    <h3>結果の詳細</h3>
+                    <div id="result-breakdown"></div>
+                </div>
+                <div class="result-actions">
+                    <button class="btn btn-primary" onclick="restartQuiz()">もう一度挑戦</button>
+                    <button class="btn btn-secondary" onclick="showStartScreen()">最初に戻る</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
